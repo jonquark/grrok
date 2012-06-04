@@ -232,8 +232,7 @@ Page {
                     updateCategories();
                 }
             }
-        }
-        MenuLayout {
+
             MenuItem {
                 id: about
                 text: qsTr("About Grrok")

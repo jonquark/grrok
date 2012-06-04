@@ -1,3 +1,8 @@
+grrok (0.1.1) unstable; urgency=low
+  * Add "get more items" to item list
+
+ -- Jon Levell <grrok@coralbark.net>  Mon, 04 Jun 2012 22:03:18 +0100
+
 grrok (0.1.0) unstable; urgency=low
   * First public release, announced on talk.maemo.org
 

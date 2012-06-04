@@ -25,7 +25,6 @@ Page {
     property bool   nextStaysInFeed: true
     property bool   nextStaysInCategory: true
 
-//    anchors.margins: rootWindow.pageMargin
     anchors.margins: 0
 
     Flickable {
@@ -44,6 +43,21 @@ Page {
             settings.defaultFontSize: 22
             preferredWidth: flick.width
             preferredHeight: flick.height
+
+//            onUrlChanged: {
+//                Qt.openUrlExternally(url);
+//                console.log("About to enable back");
+//                itemView.back.setEnabled(true);
+//                console.log("About to trigger back");
+//                itemView.back.trigger();
+//                console.log("back triggered");
+//            }
+
+            // I think we want onNavigationRequested ?
+            // https://bugs.webkit.org/show_bug.cgi?id=72976
+            // Can probably hack around it by copying:
+            // http://osdir.com/ml/kde-commits/2011-12/msg03459.html
+            // https://projects.kde.org/projects/extragear/base/plasma-mobile/repository/revisions/8ea2f26344f7968d90678035bf800ec9deb02c7f/entry/applications/about/package/contents/ui/FlickableWebView.qml
         }
     }
 
@@ -95,7 +109,7 @@ Page {
         loading = true;
 
         var gr = rootWindow.getGoogleReader();
-        gr.getFeedItems(feedId, updateItem);
+        gr.getFeedItems(feedId, false, updateItem);
     }
 
     onItemIdChanged: {

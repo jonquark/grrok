@@ -103,7 +103,7 @@ Page {
         Label {
             id: aboutInfo
             width: 350
-            text:  qsTr("Version")+": 0.1.0<br/>"
+            text:  qsTr("Version")+": 0.1.1<br/>"
                   +qsTr("Copyright")+": Jon Levell 2012<br/>"
                   +qsTr("Additional Material:")+'<ul style="padding-top: 0; margin-top:0">'
                   +'<li><a href="http://openclipart.org/detail/17864/stone-by-angelo_gemmi">Rock Image</a> - Angelo&nbsp;Gemmi</li></ul>'

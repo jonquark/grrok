@@ -104,7 +104,7 @@ Page {
                 source: "image://theme/icon-m-common-drilldown-arrow" + (theme.inverted ? "-inverse" : "")
                 anchors.right: parent.right;
                 anchors.verticalCenter: parent.verticalCenter
-                visible: (model.id != null)
+                visible: ((model.id != null)&&(model.id != "__grrok_get_more_items"))
             }
 
             MouseArea {
@@ -112,11 +112,15 @@ Page {
                 anchors.fill: background
                 onClicked: {
                     if(model.id) {
-                        var component = Qt.createComponent("Item.qml");
-                        if (component.status == Component.Ready) {
-                            pageStack.push(component, {feedId: feedId, itemId: model.id});
+                        if(model.id === "__grrok_get_more_items") {
+                            getMoreItems();
                         } else {
-                            console.log("Error loading component:", component.errorString());
+                            var component = Qt.createComponent("Item.qml");
+                            if (component.status == Component.Ready) {
+                                pageStack.push(component, {feedId: feedId, itemId: model.id});
+                            } else {
+                                console.log("Error loading component:", component.errorString());
+                            }
                         }
                     }
                 }
@@ -191,6 +195,17 @@ Page {
             } else {
                 //All necessary "closeIfEmpty" closes have occurred
                 gr.setCloseIfEmpty(false);
+
+                var unreadcount = gr.getFeedUnreadCount(feedId);
+
+                if(showall || (unreadcount > data.items.length)) {
+                    itemListModel.append({
+                                             title: "Get More items...",
+                                             subtitle: "",
+                                             id:"__grrok_get_more_items",
+                                             unread: (unreadcount > data.items.length),
+                                         });
+                }
             }
         }
     }
@@ -198,7 +213,13 @@ Page {
     function retrieveItemListData() {
         loading = true;
         var gr = rootWindow.getGoogleReader();
-        gr.getFeedItems(feedId, updateItemList)
+        gr.getFeedItems(feedId, false, updateItemList);
+    }
+
+    function getMoreItems() {
+        loading = true;
+        var gr = rootWindow.getGoogleReader();
+        gr.getFeedItems(feedId, true, updateItemList);
     }
 
     onFeedIdChanged: {

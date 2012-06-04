@@ -511,12 +511,12 @@ function setShowAll(showAll) {
     state['numStatusUpdates']++;
 }
 
-function getFeedItems(feedid, callback, force, callbackContext) {
+function getFeedItems(feedid, cont, callback, force, callbackContext) {
     if(!state['authtoken']) {
         return false;
     }
 
-    if(!force) {
+    if(!force && !cont) {
         if(state['feedcache'][feedid]) {
             callback(true, state['feedcache'][feedid], callbackContext);
             return;
@@ -524,6 +524,15 @@ function getFeedItems(feedid, callback, force, callbackContext) {
     }
 
     var url = urls["getfeed"]+encodeURIComponent(feedid);
+
+    if(cont) {
+        if(state['feedcache'][feedid]) {
+            url += "?c="+encodeURIComponent(state['feedcache'][feedid].continuation);
+        } else {
+            //Can't continue if we haven't started
+            cont = false;
+        }
+    }
 
     trace(2, "url: "+url);
 
@@ -536,7 +545,7 @@ function getFeedItems(feedid, callback, force, callbackContext) {
                 trace(3, "Headers -->");
                 trace(3, http.getAllResponseHeaders ());
             } else if (http.readyState == XMLHttpRequest.DONE) {
-                process_getFeedItems(http, feedid, callback, callbackContext);
+                process_getFeedItems(http, feedid, cont, callback, callbackContext);
             }
     }
     http.send();
@@ -546,8 +555,16 @@ function endsWith(str, suffix) {
     return str.indexOf(suffix, str.length - suffix.length) !== -1;
 }
 
+function appendFeedItemsToCacheEntry(feedid, extrafeedjson) {
+    if(!state['feedcache'][feedid]) {
+        state['feedcache'][feedid] = extrafeedjson;
+    } else {
+        state['feedcache'][feedid].continuation = extrafeedjson.continuation;
+        state['feedcache'][feedid].items = state['feedcache'][feedid].items.concat(extrafeedjson.items);
+    }
+}
 
-function process_getFeedItems(http, feedid, callback, callbackContext) {
+function process_getFeedItems(http, feedid, cont, callback, callbackContext) {
     trace(3, "readystate: "+http.readyState+" status: "+http.status);
     trace(3, "response: "+http.responseText);
 
@@ -566,8 +583,12 @@ function process_getFeedItems(http, feedid, callback, callbackContext) {
             }
         }
 
-        state['feedcache'][feedid] = feedjson;
-        callback(true, feedjson, callbackContext);
+        if(cont) {
+            appendFeedItemsToCacheEntry(feedid, feedjson);
+        } else {
+            state['feedcache'][feedid] = feedjson;
+        }
+        callback(true, state['feedcache'][feedid], callbackContext);
     } else {
         callback(false, "HTTP Error code: "+http.status, callbackContext);
     }
@@ -578,7 +599,8 @@ function getFeedUnreadCount(feedid) {
         return state['feedlist'][feedid].unreadcount;
     }
 
-    //Hmm it's all gone wrong(!) Should be logging!
+    //Hmm it's all gone wrong
+    trace(1, "Couldn't find unread count for feed: "+feedid);
     return 0;
 }
 
@@ -776,7 +798,7 @@ function pickEntryFromFeed(feedId, itemId, callback) {
     };
 
 
-    getFeedItems(feedId, process_pickEntryFromFeed, false, context);
+    getFeedItems(feedId, false, process_pickEntryFromFeed, false, context);
 }
 
 //Picks the newest unread item in the feed after the "current" item
