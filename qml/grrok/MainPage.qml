@@ -112,6 +112,7 @@ Page {
         TextField {
             id: username
             text: ""
+            width: 300
         }
         Label {
             id: passwordLabel
@@ -120,6 +121,7 @@ Page {
         TextField {
             id: password
             echoMode: TextInput.PasswordEchoOnEdit
+            width: 300
         }
     }
     Button{
@@ -141,7 +143,43 @@ Page {
         }
         enabled: true
     }
+    Item {
+        id: rowdelegate
+        anchors {
+            topMargin: 40
+            left:loginButton.left
+            top: loginButton.bottom
+        }
+        Row {
+            id: newUserandAboutRow
+            spacing: 40
 
+            Button{
+                id: newUserButton
+                width: 140
+                text: qsTr("Register")
+                onClicked: {
+                    Qt.openUrlExternally("https://accounts.google.com/NewAccount?continue=http%3A%2F%2Fwww.google.com%2Freader%2Fview%2F&followup=http%3A%2F%2Fwww.google.com%2Freader%2Fview%2F&service=reader");
+                }
+                enabled: true
+            }
+
+            Button{
+                id: aboutButton
+                width: 140
+                text: qsTr("About")
+                onClicked: {
+                    var component = Qt.createComponent("About.qml");
+                    if (component.status == Component.Ready) {
+                        pageStack.push(component);
+                    } else {
+                        console.log("Error loading component:", component.errorString());
+                    }
+                }
+                enabled: true
+            }
+        }
+    }
     BusyIndicator {
         visible: loading
         running: loading
@@ -185,11 +223,15 @@ Page {
         password.enabled = false;
         loginButton.enabled = false;
         loginButton.text = qsTr("Login in progress");
+        newUserButton.visible = false;
+        aboutButton.visible = false;
     }
 
     function enableLoginBox(focus) {
         username.enabled = true;
         password.enabled = true;
+        newUserButton.visible = true;
+        aboutButton.visible = true;
         loginButton.enabled = true;
         loginButton.text = qsTr("Login");
         if(focus) {

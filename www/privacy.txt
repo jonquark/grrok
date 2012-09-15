@@ -1,0 +1,29 @@
+Grrok - Privacy Policy
+=======================
+
+Grrok stores your Google Reader username+password on the phone. It transmits this
+information to Google in order to login. As you would expect, your actions (such as 
+marking an item read) are transmitted to Google so that they can carry out your actions.
+
+Google's use of information transmitted to them will (to the best of the author(s) 
+knowledge) be used in accordance with their privacy policy(the author(s) of Grrok have 
+no independent way verify Google's compliance with their policy).
+
+*No* information is transmitted to the author(s) of the software or (to the best of the 
+authors knowledge) to any third party aside from Google.
+
+Aside from your Google Reader username+password, no information is stored on your phone 
+once the application has ended.
+
+Latest version of this policy
+=============================
+The latest version of this policy is stored on-line please refer to the following
+address for up-to-date information:
+http://www.coralbark.net/grrok/privacy.html
+
+Contact
+========
+
+If this policy is not clear and you require further details, please email 
+grrokprivacyPARIS@coralbark.net (removing the French city from the email address first).
+

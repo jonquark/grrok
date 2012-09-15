@@ -69,10 +69,12 @@ Page {
             }
 
             Row {
-                anchors.fill: parent
+                anchors.left: parent.left
+                anchors.right: drilldownarrow.left
+                clip: true
 
                 Column {
-                    anchors.verticalCenter: parent.verticalCenter
+                    clip: true
 
                     Label {
                         id: mainText
@@ -96,6 +98,7 @@ Page {
             }
 
             Image {
+                id: drilldownarrow
                 source: "image://theme/icon-m-common-drilldown-arrow" + (theme.inverted ? "-inverse" : "")
                 anchors.right: parent.right;
                 anchors.verticalCenter: parent.verticalCenter

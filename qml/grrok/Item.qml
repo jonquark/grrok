@@ -36,6 +36,8 @@ Page {
         interactive: true
         clip: true
 
+        signal newWindowRequested(string url)
+
         WebView {
             id: itemView
             transformOrigin: Item.TopLeft
@@ -44,20 +46,42 @@ Page {
             preferredWidth: flick.width
             preferredHeight: flick.height
 
-//            onUrlChanged: {
-//                Qt.openUrlExternally(url);
-//                console.log("About to enable back");
-//                itemView.back.setEnabled(true);
-//                console.log("About to trigger back");
-//                itemView.back.trigger();
-//                console.log("back triggered");
-//            }
+/*            onUrlChanged: {
+                console.log("In onURLChanged: "+url);
+                if (String(url).substr(0, 6) !== "file:/") {
+                    Qt.openUrlExternally(url);
+                    console.log("About to trigger back");
+                    //itemView.back.setEnabled(true);
+                    itemView.back.trigger();
+                }
+            }*/
 
             // I think we want onNavigationRequested ?
             // https://bugs.webkit.org/show_bug.cgi?id=72976
-            // Can probably hack around it by copying:
+            // Most of the oddness inside the flickable is an attempt to hack around it following the example of:
             // http://osdir.com/ml/kde-commits/2011-12/msg03459.html
             // https://projects.kde.org/projects/extragear/base/plasma-mobile/repository/revisions/8ea2f26344f7968d90678035bf800ec9deb02c7f/entry/applications/about/package/contents/ui/FlickableWebView.qml
+ /*           newWindowComponent: Component {
+                Item {
+                    id: newPageComponent
+
+                    WebView {
+                        id: newWindow
+
+                        onUrlChanged: {
+
+                            if (url != "") {
+                                flick.newWindowRequested(url)
+
+                                var newObject = Qt.createQmlObject('import QtQuick 1.0; Item {}', itemView);
+                                newPageComponent.parent = newObject
+                                newObject.destroy();
+                            }
+                        }
+                    }
+                }
+            }
+            newWindowParent: itemView */
         }
     }
 

@@ -103,14 +103,18 @@ Page {
         Label {
             id: aboutInfo
             width: 350
-            text:  qsTr("Version")+": 0.1.1<br/>"
+            text:  qsTr("Version")+": 0.1.4<br/>"
                   +qsTr("Copyright")+": Jon Levell 2012<br/>"
+                   +'<a href="http://www.coralbark.net/grrok/privacy.html">'+qsTr('Grrok Privacy Policy')+'</a><br/>'
                   +qsTr("Additional Material:")+'<ul style="padding-top: 0; margin-top:0">'
                   +'<li><a href="http://openclipart.org/detail/17864/stone-by-angelo_gemmi">Rock Image</a> - Angelo&nbsp;Gemmi</li></ul>'
                   +qsTr("Included example code:")+'<ul style="padding-top: 0; margin-top:0">'
                   +'<li><a href="http://phpjs.org/functions/get_html_translation_table">HTML Entity Parsing</a></li>'
                   +'<li><a href="http://www.developer.nokia.com/Community/Wiki/How-to_create_a_persistent_settings_database_in_Qt_Quick_%28QML%29">Save settings</a></li>'
                   +'<li><a href="http://www.openjs.com/scripts/others/dump_function_php_print_r.php">dump() debugging</a></li></ul>'
+            onLinkActivated: {
+                Qt.openUrlExternally(link)
+            }
         }
     }
 

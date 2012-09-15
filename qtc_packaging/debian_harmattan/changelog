@@ -1,3 +1,18 @@
+grrok (0.1.4) stable; urgency=low
+  * Add link to Privacy statement in "About Grrok"
+
+ -- Jon Levell <grrok@coralbark.net>  Wed, 12 Sep 2012 20:23:34 +0100
+
+grrok (0.1.3) stable; urgency=low
+  * Add link to create Google Reader Account
+
+ -- Jon Levell <grrok@coralbark.net>  Sun, 02 Sep 2012 21:28:51 +0100
+
+grrok (0.1.2) stable; urgency=low
+  * First version for Ovi Store
+
+ -- Jon Levell <grrok@coralbark.net>  Mon, 04 Jun 2012 22:03:18 +0100
+
 grrok (0.1.1) unstable; urgency=low
   * Add "get more items" to item list
 

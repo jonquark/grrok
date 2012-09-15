@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by Qt Creator 2.4.1, 2012-06-04T22:04:13. -->
+<!-- Written by Qt Creator 2.4.1, 2012-09-12T20:27:38. -->
 <qtcreator>
  <data>
   <variable>ProjectExplorer.Project.ActiveTarget</variable>
@@ -577,19 +577,35 @@
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">MaemoUploadAndInstallDpkgPackageStep</value>
       <valuelist type="QVariantList" key="Qt4ProjectManager.MaemoRunConfiguration.LastDeployedFiles">
+       <value type="QString">/home/jon/persdev/grrok-build-harmattan-Harmattan_Target__Qt_SDK__Release/grrok_0.1.3_armel.deb</value>
        <value type="QString">/home/jon/persdev/grrok-build-harmattan-Harmattan_Target__Qt_SDK__Release/grrok_0.0.1_armel.deb</value>
+       <value type="QString">/home/jon/persdev/grrok-build-harmattan-Harmattan_Target__Qt_SDK__Release/grrok_0.1.1_armel.deb</value>
+       <value type="QString">/home/jon/persdev/grrok-build-harmattan-Harmattan_Target__Qt_SDK__Release/grrok_0.1.4_armel.deb</value>
+       <value type="QString">/home/jon/persdev/grrok-build-harmattan-Harmattan_Target__Qt_SDK__Release/grrok_0.1.2_armel.deb</value>
        <value type="QString">/home/jon/persdev/grrok-build-harmattan-Harmattan_Target__Qt_SDK__Release/grrok_0.1.0_armel.deb</value>
       </valuelist>
       <valuelist type="QVariantList" key="Qt4ProjectManager.MaemoRunConfiguration.LastDeployedHosts">
+       <value type="QString">192.168.2.115</value>
+       <value type="QString">192.168.2.115</value>
+       <value type="QString">192.168.2.115</value>
+       <value type="QString">192.168.2.115</value>
        <value type="QString">192.168.2.115</value>
        <value type="QString">192.168.2.115</value>
       </valuelist>
       <valuelist type="QVariantList" key="Qt4ProjectManager.MaemoRunConfiguration.LastDeployedRemotePaths">
        <value type="QString"></value>
        <value type="QString"></value>
+       <value type="QString"></value>
+       <value type="QString"></value>
+       <value type="QString"></value>
+       <value type="QString"></value>
       </valuelist>
       <valuelist type="QVariantList" key="Qt4ProjectManager.MaemoRunConfiguration.LastDeployedTimes">
+       <value type="QDateTime">2012-09-12T20:22:36</value>
        <value type="QDateTime">2012-05-24T20:25:56</value>
+       <value type="QDateTime">2012-08-22T21:51:40</value>
+       <value type="QDateTime">2012-09-12T20:27:21</value>
+       <value type="QDateTime">2012-09-02T21:26:49</value>
        <value type="QDateTime">2012-06-04T21:51:12</value>
       </valuelist>
      </valuemap>
